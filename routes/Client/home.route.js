@@ -1,9 +1,7 @@
 // File chứa routes của trang home
 const express = require("express");
 const router = express.Router();
-
-router.get("/", (req, res) => {
-  res.render("Client/pages/home/index.pug");
-});
+const controller = require("../../controllers/Client/home.controller");
+router.get("/", controller.homePage);
 
 module.exports = router;
