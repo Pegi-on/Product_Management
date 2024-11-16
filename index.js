@@ -1,7 +1,12 @@
 const express = require("express");
+
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT;
+
+// Kết nối database
+const database = require("./config/database.js");
+database.connect();
 
 const routeClient = require("./routes/Client/index.route");
 
@@ -12,5 +17,5 @@ app.use(express.static("public")); //Thiết lập thư mục chứa file tĩnh
 routeClient.index(app);
 
 app.listen(port, () => {
-  console.log(`App listening on por ${port}`);
+  console.log(`App listening on port ${port}`);
 });
