@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT;
+const systemConfig = require("./config/system");
 
 // cấu hình route
 const routeAdmin = require("./routes/admin/index.route");
@@ -20,6 +21,10 @@ app.use(express.static("public")); //thiết lập thư mục chứa file tĩnh
 
 routeAdmin.index(app);
 routeClient.index(app);
+
+// khai báo biến toàn cục
+app.locals.prefixAdmin = systemConfig.prefixAdmin;
+// end khai báo biến toàn cục
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
